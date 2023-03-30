@@ -1,4 +1,13 @@
-import { GET_ALL_COUNTRIES, GET_DETAIL, SEARCH_COUNTRY, ORDER_COUNTRIES, FILTER_BY_CONTINENT, GET_ACTIVITY, CREATE_ACTIVITY, ACTIVITIES_ERROR } from '../actions/types';
+import {
+  GET_ALL_COUNTRIES,
+  GET_DETAIL,
+  SEARCH_COUNTRY,
+  ORDER_COUNTRIES,
+  FILTER_BY_CONTINENT,
+  GET_ACTIVITY,
+  CREATE_ACTIVITY,
+  ACTIVITIES_ERROR
+} from '../actions/types';
 
 const initialState = {
   countries: [],
@@ -39,15 +48,15 @@ const countriesReducer = (state = initialState, action) => {
         filteredCountries: sortedCountries,
         order: action.payload,
       };
-      case FILTER_BY_CONTINENT:
-        const filteredByContinent = action.payload
-          ? state.countries.filter((c) => c.continent === action.payload)
-          : state.countries;
-        return {
-          ...state,
-          filteredCountries: filteredByContinent,
-          continentFilter: action.payload,
-        };      
+    case FILTER_BY_CONTINENT:
+      const filteredByContinent = action.payload
+        ? state.countries.filter((c) => c.continent === action.payload)
+        : state.countries;
+      return {
+        ...state,
+        filteredCountries: filteredByContinent,
+        continentFilter: action.payload,
+      };
     case CREATE_ACTIVITY:
       return {
         ...state,
@@ -58,13 +67,14 @@ const countriesReducer = (state = initialState, action) => {
       return {
         ...state,
         activity: action.payload,
+        error: null
       };
     case ACTIVITIES_ERROR:
       return {
         ...state,
-        error: action.payload,
+        activity: null,
+        error: action.payload
       };
-
     default:
       return state;
   }
