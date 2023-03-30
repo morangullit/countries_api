@@ -14,14 +14,16 @@ function App() {
   
 
   return (
-      <div>
-        {location.pathname !== '/' && <NavBar />}
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/detail/:id" component={Detail} />
-        <Route path="/create" component={CreateActivity} />
-        <Route path="/about" component={About} />
-        <Route path="/home" render={() => <HomePage/>}/>
-      </div>
+    <div>
+    {location.pathname !== '/' && location.pathname !== '/create' && <NavBar />}
+    <Route exact path="/" component={LandingPage} />
+    <Route path="/detail/:id" component={Detail} />
+    <Route path="/create">
+      <CreateActivity showNavbar={false} />
+    </Route>
+    <Route path="/about" component={About} />
+    <Route path="/home" render={() => <HomePage />} />
+  </div>
      
   );
 }

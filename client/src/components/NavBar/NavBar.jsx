@@ -17,20 +17,22 @@ export const NavBar = () => {
   };
 
   return (
-    <nav>
-      <div className={styles.nav_container}>
-        <a href='/home'>Home</a>
-        <SearchBar />
+    <nav className={styles.nav_container}>
+      <div >
+        <a className={styles.button} href='/home'>Home</a>
+        <div >
+          <SearchBar />
+        </div>
         <div className={styles.order_container}>
-          <label>Order by name:</label>
-          <select onChange={handleSort}>
+          <label >Order by name:</label>
+          <select className={styles.select} onChange={handleSort}>
             <option value='Abc'>A-Z</option>
             <option value='cba'>Z-A</option>
           </select>
         </div>
-        <div className={styles.order_container}>
-          <label>Filter by continent:</label>
-          <select onChange={handleContinentFilter}>
+        <div className={styles.filter_container}>
+          <label >Filter by continent:</label>
+          <select className={styles.select} onChange={handleContinentFilter}>
             <option value=''>All</option>
             <option value='Africa'>Africa</option>
             <option value='Americas'>Americas</option>
@@ -39,7 +41,9 @@ export const NavBar = () => {
             <option value='Oceania'>Oceania</option>
           </select>
         </div>
-        <Link to='/create'>Form</Link>
+        <Link className={styles.button} to='/create'>Create Activity</Link>
+        <br/>
+        <Link className={styles.button} to='/'>Salir</Link>
       </div>
     </nav>
   );

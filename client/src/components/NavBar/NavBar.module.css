@@ -1,45 +1,44 @@
 .nav_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-  }
-  
-  .filter_container,
-  .order_container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .order_container {
-    margin-left: auto;
-  }
-  
-  select {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    border: 1px solid #ccc;
-    background-color: white;
-  }
-  
-  .order_button {
-    background-color: transparent;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+
+
+.filter_container,
+.order_container {
+  display: flow-root;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.button {
+  padding: 10px 20px;
+    font-size: 17px;
+    border-radius: 5px;
     border: none;
+    background-color: #1affff;
+    color: #000000;
     cursor: pointer;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    opacity: 0.5;
-    transition: opacity 0.3s ease-in-out;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-  }
-  
-  .order_button:hover,
-  .order_button_active {
-    opacity: 1;
-  }
-  
+}
+
+.button:hover {
+  background-color: #999
+}
+
+.button:active {
+  background-color: #999;
+  box-shadow: 0 5px #666;
+  transform: translateY(1px);
+}

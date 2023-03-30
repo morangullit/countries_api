@@ -1,5 +1,5 @@
 .container {
-    border-radius: 50px;
+    border-radius: 20px;
     background-color: #f2f2f244;
     padding: 20px;
     margin-right: 500px;
@@ -41,18 +41,39 @@ select:focus {
 }
 
 .button {
-  margin-top: 10px;
   padding: 10px 20px;
-  background-color: #569eec;
-  color: #ffffff;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1affff;
+    color: #000000;
+    cursor: pointer;
 }
 
-button:hover {
+.button:hover {
   background-color: #3F6E91;
 }
+
+.button_link {
+  padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1affff;
+    color: #000000;
+    cursor: pointer;
+}
+
+
+.button_link:active {
+  background-color: #999;
+  box-shadow: 0 5px #666;
+  transform: translateY(1px);
+}
+
+
+
+
 
 ul {
     display: flex;
@@ -82,5 +103,10 @@ ul {
     padding: 1px 5px;
     margin-left: 5px;
   }
+
+
+
+  
+  
   
   

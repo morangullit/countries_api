@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { createActivity, getCountries } from '../../redux/actions/actions';
+import { NavBar } from '../NavBar/NavBar';
 import styles from './CreateActivity.module.css';
 
-const CreateActivity = () => {
+const CreateActivity = ({showNavBar}) => {
   const dispatch = useDispatch();
 
 
@@ -65,6 +67,10 @@ const CreateActivity = () => {
 
   return (
     <div className={styles.container}>
+      <div>
+      <Link className={styles.button_link} to='/home'>Home</Link>
+      </div>
+      {showNavBar && <NavBar/>}
       <form className={styles.form} onSubmit={handleSubmit}>
         <div>
           <label className={styles.label} htmlFor="name">Nombre:</label>
@@ -83,7 +89,15 @@ const CreateActivity = () => {
         </div>
         <div>
           <label className={styles.label} htmlFor="duration">Duración:</label>
-          <input className={styles.input} type="number" id="duration" name="duration" value={activityData.duration} onChange={handleInputChange} required step="1" />
+          <input
+              type="number"
+              name="duration"
+              value={activityData.duration}
+              onChange={handleInputChange}
+              min="1"
+              max="24"
+              required
+            />
         </div>
         <div>
           <label className={styles.label} htmlFor="season">Temporada:</label>
