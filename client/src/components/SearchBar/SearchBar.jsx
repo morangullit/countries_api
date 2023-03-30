@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchCountry } from '../../redux/actions/actions';
+import styles from './SearchBar.module.css'
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,7 +21,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className={styles.input_icon}>
       <input type="text" placeholder="Buscar país" value={searchTerm} onChange={handleSearch} />
       {notFound && <div className="alert alert-danger" role="alert">Pais no encontrado</div>}
     </div>
