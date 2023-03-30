@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getActivity, getDetail } from '../../redux/actions/actions';
+import { getDetail } from '../../redux/actions/actions';
 import styles from './Detail.module.css';
 
 const Detail = () => {

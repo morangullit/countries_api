@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getCountries } from '../../redux/actions/actions';
 import  Cards  from '../Cards/Cards';
 import styles from './HomePage.module.css';
