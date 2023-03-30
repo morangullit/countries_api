@@ -11,13 +11,13 @@ const Cards = () => {
   const perPage = 10;
   const indexOfLastItem = currentPage * perPage;
   const indexOfFirstItem = indexOfLastItem - perPage;
-  const currentItems = filteredCountries?.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = Object.values(filteredCountries)?.slice(indexOfFirstItem, indexOfLastItem);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   
 
   return (
     <div className={styles.card_container}>
-      {currentItems.map((country) => (
+      {currentItems.map((country)=> (
         <Card
           key={country.id}
           id={country.id}

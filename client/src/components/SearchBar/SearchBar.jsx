@@ -10,11 +10,11 @@ const SearchBar = () => {
   const handleSearch = (event) => {
     const input = event.target.value;
     const validInput = /^[a-zA-Z\s]*$/.test(input);
-    if (!validInput) {
-      alert('Por favor, ingrese solo letras.');
-      return;
-    }
     setSearchTerm(input);
+    if (!validInput) {
+      setNotFound(true);
+      return alert('Por favor, ingrese solo letras.');
+    }
     setNotFound(false);
     dispatch(searchCountry(input, setNotFound));
   };
@@ -22,9 +22,10 @@ const SearchBar = () => {
   return (
     <div>
       <input type="text" placeholder="Buscar país" value={searchTerm} onChange={handleSearch} />
-      {notFound && <p>Pais no encontrado</p>}
+      {notFound && <div className="alert alert-danger" role="alert">Pais no encontrado</div>}
     </div>
   );
 };
 
 export default SearchBar;
+

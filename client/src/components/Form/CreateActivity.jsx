@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createActivity, getCountries } from '../../redux/actions/actions';
+import styles from './CreateActivity.module.css';
 
 const CreateActivity = () => {
   const dispatch = useDispatch();
+
+
 
   const [activityData, setActivityData] = useState({
     name: '',
@@ -12,6 +15,8 @@ const CreateActivity = () => {
     season: '',
     countries: []
   });
+
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   const countries = useSelector(state => state.countries);
 
@@ -25,24 +30,26 @@ const CreateActivity = () => {
   };
 
   const handleCountryChange = (event) => {
-    const options = event.target.options;
-    if(!options) return;
-    const value = [];
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    setActivityData({ ...activityData, countries: value });
+    setSelectedCountry(event.target.value);
   };
 
-  const handleAddCountry = (event) => {
-    event.preventDefault();
-    const countrySelect = document.getElementById('countries');
-    const selectedCountries = Array.from(countrySelect.selectedOptions).map(option => option.value);
-    setActivityData({...activityData, countries: [...activityData.countries, ...selectedCountries]});
-    countrySelect.selectedIndex = -1;
+  const handleAddCountry = () => {
+    if (selectedCountry !== "" && !activityData.countries.includes(selectedCountry)) {
+      setActivityData({
+        ...activityData,
+        countries: [...activityData.countries, selectedCountry],
+      });
+      setSelectedCountry("");
+    }
+  };
+
+  const handleRemoveCountry = (country) => {
+    setActivityData({
+      ...activityData,
+      countries: activityData.countries.filter((c) => c !== country),
+    });
   }
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,54 +64,82 @@ const CreateActivity = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Nombre:</label>
-        <input type="text" id="name" name="name" value={activityData.name} onChange={handleInputChange} required />
-      </div>
-      <div>
-        <label htmlFor="difficulty">Dificultad:</label>
-        <select id="difficulty" name="difficulty" value={activityData.difficulty} onChange={handleInputChange} required>
-          <option value=""></option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="duration">Duración:</label>
-        <input type="number" id="duration" name="duration" value={activityData.duration} onChange={handleInputChange} required step="1" />
-      </div>
-      <div>
-        <label htmlFor="season">Temporada:</label>
-        <select id="season" name="season" value={activityData.season} onChange={handleInputChange} required>
-          <option value=""></option>
-          <option value="Summer">Summer</option>
-          <option value="Autumn">Autumn</option>
-          <option value="Winter">Winter</option>
-          <option value="Spring">Spring</option>
-        </select>
-      </div>
-      <div>
-  <label htmlFor="countries">Países:</label>
-  <select id="countries" name="countries" value={activityData.countries} onChange={handleCountryChange} required multiple>
-    {countries.map(country => (
-      <option key={country.id} value={country.id}>
-        {country.id} - {country.name}
-      </option>
-    ))}
-  </select>
-  <button type="button" onClick={handleAddCountry}>Añadir</button>
-  <ul>
-    {activityData.countries.map((country) => (
-      <li key={country}>{country}</li>
-    ))}
-  </ul>
-</div>
-<button type="submit">Crear actividad</button>
-</form> 
-)}
+    <div className={styles.container}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div>
+          <label className={styles.label} htmlFor="name">Nombre:</label>
+          <input className={styles.input} type="text" id="name" name="name" value={activityData.name} onChange={handleInputChange} required />
+        </div>
+        <div>
+          <label className={styles.label} htmlFor="difficulty">Dificultad:</label>
+          <select className={styles.select} id="difficulty" name="difficulty" value={activityData.difficulty} onChange={handleInputChange} required>
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div>
+          <label className={styles.label} htmlFor="duration">Duración:</label>
+          <input className={styles.input} type="number" id="duration" name="duration" value={activityData.duration} onChange={handleInputChange} required step="1" />
+        </div>
+        <div>
+          <label className={styles.label} htmlFor="season">Temporada:</label>
+          <select className={styles.select} id="season" name="season" value={activityData.season} onChange={handleInputChange} required>
+            <option value=""></option>
+            <option value="Summer">Summer</option>
+            <option value="Autumn">Autumn</option>
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+          </select>
+        </div>
+        <div>
+          <label className={styles.label} htmlFor="countries">
+            Países:
+          </label>
+          <select
+            className={styles.select}
+            id="countries"
+            name="countries"
+            value={selectedCountry}
+            onChange={handleCountryChange}
+          >
+            <option value="">Seleccionar país</option>
+            {countries.map((country) => (
+              <option key={country.id} value={country.id}>
+                {country.id} - {country.name}
+              </option>
+            ))}
+          </select>
+          <button className={styles.button} type="button" onClick={handleAddCountry}>
+            Añadir
+          </button>
+        </div>
+        <div className={styles.inputGroup}>
+          <label className={styles.label} htmlFor="selectedCountries">
+            Países seleccionados:
+          </label>
+          <ul className={styles.ul} id="selectedCountries">
+            {activityData.countries.map((country) => (
+              <li className={styles.li} key={country}>
+                {country}
+                <button
+                  className={styles.removeButton}
+                  onClick={() => handleRemoveCountry(country)}
+                >
+                  x
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button className={styles.button} type="submit">Crear actividad</button>
+      </form>
+    </div>
+  );
+}
+
 
 export default CreateActivity;
