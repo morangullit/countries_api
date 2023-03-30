@@ -17,7 +17,7 @@ const Cards = () => {
 
   return (
     <div className={styles.card_container}>
-      {currentItems.map((country)=> (
+      {currentItems.map((country) => (
         <Card
           key={country.id}
           id={country.id}

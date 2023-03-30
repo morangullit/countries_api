@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
 
 
-const Card = (props) => {
-    const {id, name, flagImage, continent } = props;
+const Card = ({id, name, flagImage, continent }) => {
   return (
     <div className={styles.card}>
        <img className={styles.card_image} src={flagImage} alt={`Bandera de ${name}`} />

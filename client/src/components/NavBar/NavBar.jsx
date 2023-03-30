@@ -24,7 +24,7 @@ export const NavBar = () => {
           <SearchBar />
         </div>
         <div className={styles.order_container}>
-          <label >Order by name:</label>
+          <label >Alphabetical order:</label>
           <select className={styles.select} onChange={handleSort}>
             <option value='Abc'>A-Z</option>
             <option value='cba'>Z-A</option>
