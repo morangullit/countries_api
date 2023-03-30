@@ -64,6 +64,18 @@ select:focus {
     cursor: pointer;
 }
 
+.button_home{
+  padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1affff;
+    color: #000000;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 500px;
+}
+
 
 .button_link:active {
   background-color: #999;
@@ -102,6 +114,13 @@ ul {
     font-size: 14px;
     padding: 1px 5px;
     margin-left: 5px;
+  }
+
+
+  .h1_titel{
+    color: white;
+  text-align: center;
+  margin-top: 50px;
   }
 
 

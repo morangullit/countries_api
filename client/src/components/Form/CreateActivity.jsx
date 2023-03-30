@@ -66,26 +66,28 @@ const CreateActivity = ({showNavBar}) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div >
       <div>
-      <Link className={styles.button_link} to='/home'>Home</Link>
+      <h1 className={styles.h1_titel}>Activity Creation</h1>
+      <Link className={styles.button_home} to='/home'>Home</Link>
       </div>
       {showNavBar && <NavBar/>}
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.container} onSubmit={handleSubmit}>
         <div>
-          <label className={styles.label} htmlFor="name">Nombre:</label>
+          <label className={styles.label} htmlFor="name">Nombre de la:</label>
           <input className={styles.input} type="text" id="name" name="name" value={activityData.name} onChange={handleInputChange} required />
         </div>
         <div>
           <label className={styles.label} htmlFor="difficulty">Dificultad:</label>
-          <select className={styles.select} id="difficulty" name="difficulty" value={activityData.difficulty} onChange={handleInputChange} required>
-            <option value=""></option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+          <input  
+            type="number" 
+            name="difficulty" 
+            value={activityData.difficulty} 
+            onChange={handleInputChange}
+            min="1"
+            max="5"
+            required 
+          />
         </div>
         <div>
           <label className={styles.label} htmlFor="duration">Duración:</label>
