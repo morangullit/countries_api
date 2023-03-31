@@ -4,7 +4,7 @@ import { createActivity, getCountries } from '../../redux/actions/actions';
 import { NavBar } from '../NavBar/NavBar';
 import styles from './CreateActivity.module.css';
 
-const CreateActivity = ({ showNavBar }) => {
+const CreateActivity = ({showNavBar}) => {
   const dispatch = useDispatch();
 
 
@@ -55,11 +55,6 @@ const CreateActivity = ({ showNavBar }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createActivity(activityData));
-    if (activityData.countries.length === 0) {
-      alert('Debe seleccionar al menos un país antes de crear la actividad');
-      return;
-    }
-    dispatch(createActivity(activityData));
     setActivityData({
       name: '',
       difficulty: '',
@@ -72,37 +67,37 @@ const CreateActivity = ({ showNavBar }) => {
   return (
     <div >
       <div>
-        <h1 className={styles.h1_titel}>Activity Creation</h1>
+      <h1 className={styles.h1_titel}>Activity Creation</h1>
       </div>
-      {showNavBar && <NavBar />}
+      {showNavBar && <NavBar/>}
       <form className={styles.container} onSubmit={handleSubmit}>
         <div>
-          <label className={styles.label} htmlFor="name">Nombre de la Actividad:</label>
+          <label className={styles.label} htmlFor="name">Nombre de la:</label>
           <input className={styles.input} type="text" id="name" name="name" value={activityData.name} onChange={handleInputChange} required />
         </div>
         <div>
           <label className={styles.label} htmlFor="difficulty">Dificultad:</label>
-          <input
-            type="number"
-            name="difficulty"
-            value={activityData.difficulty}
+          <input  
+            type="number" 
+            name="difficulty" 
+            value={activityData.difficulty} 
             onChange={handleInputChange}
             min="1"
             max="5"
-            required
+            required 
           />
         </div>
         <div>
           <label className={styles.label} htmlFor="duration">Duración:</label>
           <input
-            type="number"
-            name="duration"
-            value={activityData.duration}
-            onChange={handleInputChange}
-            min="1"
-            max="24"
-            required
-          />
+              type="number"
+              name="duration"
+              value={activityData.duration}
+              onChange={handleInputChange}
+              min="1"
+              max="24"
+              required
+            />
         </div>
         <div>
           <label className={styles.label} htmlFor="season">Temporada:</label>
@@ -154,9 +149,7 @@ const CreateActivity = ({ showNavBar }) => {
             ))}
           </ul>
         </div>
-        <button className={styles.button} type="submit" disabled={activityData.countries.length === 0}>
-          Crear actividad
-        </button>
+        <button className={styles.button} type="submit">Crear actividad</button>
       </form>
     </div>
   );
