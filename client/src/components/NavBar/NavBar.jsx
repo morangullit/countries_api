@@ -17,8 +17,8 @@ export const NavBar = () => {
   };
 
   return (
-    <nav className={styles.nav_container}>
-      <div >
+    <nav >
+      <div className={styles.nav_container}>
         <a className={styles.button} href='/home'>Home</a>
         <div >
           <SearchBar />
@@ -31,7 +31,7 @@ export const NavBar = () => {
           </select>
         </div>
         <div className={styles.filter_container}>
-          <label >Filter by continent:</label>
+          <label className={styles.label}>Filter by continent:</label>
           <select className={styles.select} onChange={handleContinentFilter}>
             <option value=''>All</option>
             <option value='Africa'>Africa</option>

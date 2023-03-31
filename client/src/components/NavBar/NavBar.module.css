@@ -1,18 +1,26 @@
 .nav_container {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #33333369;
+  margin-left: 20px;
+  border-radius: 20px;
 }
 
-
+.label {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
 
 .filter_container,
 .order_container {
   display: flow-root;
   align-items: flex-end;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .select {
@@ -25,12 +33,13 @@
 
 .button {
   padding: 10px 20px;
-    font-size: 17px;
-    border-radius: 5px;
-    border: none;
-    background-color: #1affff;
-    color: #000000;
-    cursor: pointer;
+  font-size: 17px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1affff;
+  color: #000000;
+  cursor: pointer;
+  margin: 0 .5rem 0;
 }
 
 .button:hover {
