@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { orderCountries, filterByContinent } from '../../redux/actions/actions';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './NavBar.module.css';
-import CreateActivity from '../Form/CreateActivity';
+
 
 
 export const NavBar = () => {

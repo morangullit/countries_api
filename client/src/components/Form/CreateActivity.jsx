@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { createActivity, getCountries } from '../../redux/actions/actions';
 import { NavBar } from '../NavBar/NavBar';
 import styles from './CreateActivity.module.css';
