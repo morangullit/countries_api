@@ -2,8 +2,8 @@
     border-radius: 20px;
     background-color: #f2f2f244;
     padding: 20px;
-    margin-right: 500px;
-    margin-left: 500px;
+    width: 80%;
+    margin: 0 auto;
   }
 
 form {

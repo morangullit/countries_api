@@ -74,12 +74,11 @@ const CreateActivity = ({ showNavBar }) => {
     <div >
       <div>
         <h1 className={styles.h1_titel}>Activity Creation</h1>
-        <Link className={styles.button_home} to='/home'>Home</Link>
       </div>
       {showNavBar && <NavBar />}
       <form className={styles.container} onSubmit={handleSubmit}>
         <div>
-          <label className={styles.label} htmlFor="name">Nombre de la:</label>
+          <label className={styles.label} htmlFor="name">Nombre de la Actividad:</label>
           <input className={styles.input} type="text" id="name" name="name" value={activityData.name} onChange={handleInputChange} required />
         </div>
         <div>
