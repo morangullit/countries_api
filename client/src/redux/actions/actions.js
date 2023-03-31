@@ -5,9 +5,7 @@ import {
   SEARCH_COUNTRY,
   ORDER_COUNTRIES,
   FILTER_BY_CONTINENT,
-  ACTIVITIES_ERROR,
   CREATE_ACTIVITY,
-  GET_ACTIVITY
 } from './types';
 
 
@@ -80,23 +78,6 @@ export const createActivity = (activityData) => async (dispatch) => {
   }
 };
 
-export const getActivity = (activityId) => async (dispatch) => {
-  try {
-    const response = await axios.get(`http://localhost:3001/activities/${activityId}`);
-    const activity = response.data;
-    dispatch({
-      type: GET_ACTIVITY,
-      payload: activity,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const activitiesError = (error) => ({
-  type: ACTIVITIES_ERROR,
-  payload: error,
-});
 
 
 

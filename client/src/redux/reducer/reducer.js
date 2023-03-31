@@ -4,9 +4,7 @@ import {
   SEARCH_COUNTRY,
   ORDER_COUNTRIES,
   FILTER_BY_CONTINENT,
-  GET_ACTIVITY,
   CREATE_ACTIVITY,
-  ACTIVITIES_ERROR
 } from '../actions/types';
 
 const initialState = {
@@ -16,8 +14,6 @@ const initialState = {
   order: "Abc",
   continentFilter: "",
   activities: [],
-  activity: null,
-  error: null,
 };
 
 const countriesReducer = (state = initialState, action) => {
@@ -62,18 +58,6 @@ const countriesReducer = (state = initialState, action) => {
         ...state,
         activities: [...state.activities, action.payload],
         error: null,
-      };
-    case GET_ACTIVITY:
-      return {
-        ...state,
-        activity: action.payload,
-        error: null
-      };
-    case ACTIVITIES_ERROR:
-      return {
-        ...state,
-        activity: null,
-        error: action.payload
       };
     default:
       return state;

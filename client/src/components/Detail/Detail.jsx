@@ -22,6 +22,9 @@ const Detail = () => {
       <div className={styles.card_content}>
         <h2 className={styles.detail_title}>{country.name}</h2>
         <p className={styles.detail_text}>
+          <strong>ID:</strong> {country.id}
+        </p>
+        <p className={styles.detail_text}>
           <strong>Capital:</strong> {country.capital}
         </p>
         <p className={styles.detail_text}>
@@ -31,10 +34,10 @@ const Detail = () => {
           <strong>Sub-Region:</strong> {country.subregion}
         </p>
         <p className={styles.detail_text}>
-          <strong>Area:</strong> {country.area}
+          <strong>Area:</strong> {country.area?.toLocaleString() } km²
         </p> 
         <p className={styles.detail_text}>
-          <strong>Población:</strong> {country.population}
+          <strong>Población:</strong> {country.population?.toLocaleString()}
         </p>  
       </div>
       </div>
