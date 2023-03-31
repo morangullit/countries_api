@@ -22,8 +22,8 @@ const SearchBar = () => {
 
   return (
     <div className={styles.input_icon}>
-      <input type="text" placeholder="Buscar país" value={searchTerm} onChange={handleSearch} />
-      {notFound && <div className="alert alert-danger" role="alert">Pais no encontrado</div>}
+      <input type="text" placeholder="Search country" value={searchTerm} onChange={handleSearch} />
+      {notFound && <div className="alert alert-danger" role="alert">Country not found</div>}
     </div>
   );
 };
