@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCountries } from '../../redux/actions/actions';
 import  Cards  from '../Cards/Cards';
-import SearchBar from '../SearchBar/SearchBar';
 import styles from './HomePage.module.css';
 
 
