@@ -4,12 +4,11 @@ import { orderCountries, filterByContinent } from '../../redux/actions/actions';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './NavBar.module.css';
 
-
-
 export const NavBar = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const isDetailPage = location.pathname.startsWith('/detail');
+  const isHomePage = location.pathname === '/home';
 
   const handleSort = (event) => {
     dispatch(orderCountries(event.target.value));
@@ -23,11 +22,11 @@ export const NavBar = () => {
     <nav >
       <div className={styles.nav_container}>
         <Link className={styles.button} to='/home'>Home</Link>
-        {!isDetailPage && (
+        {isHomePage && (
+          <SearchBar show={true} />
+        )}
+        {!isDetailPage && isHomePage && (
           <>
-            <div >
-              <SearchBar />
-            </div>
             <div className={styles.order_container}>
               <label >Alphabetical order:</label>
               <select className={styles.select} onChange={handleSort}>
@@ -46,11 +45,10 @@ export const NavBar = () => {
                 <option value='Oceania'>Oceania</option>
               </select>
             </div>
-
           </>
         )}
         {isDetailPage && (
-          <SearchBar />
+          <SearchBar show={false} />
         )}
         <Link className={styles.button} to='/create'>Create Activity</Link>
         <Link className={styles.button} to='/'>Salir</Link>
