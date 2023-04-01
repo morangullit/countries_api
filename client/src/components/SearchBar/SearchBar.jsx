@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchCountry } from '../../redux/actions/actions';
-import styles from './SearchBar.module.css'
+import styles from './SearchBar.module.css';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,7 +9,7 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (event) => {
-    const input = event.target.value;
+    const input = (event.target.value);
     const validInput = /^[a-zA-Z\s]*$/.test(input);
     setSearchTerm(input);
     if (!validInput) {
@@ -19,6 +19,7 @@ const SearchBar = () => {
     setNotFound(false);
     dispatch(searchCountry(input, setNotFound));
   };
+
 
   return (
     <div className={styles.input_icon}>

@@ -8,7 +8,6 @@ import styles from './HomePage.module.css';
  const HomePage = () => {
 
   const dispatch = useDispatch();
-  ;
 
   useEffect(() => {
     dispatch(getCountries())
