@@ -6,6 +6,7 @@ export const About = () => {
     <>
       <h1 className={styles.about}>Gullit Moran</h1>
       <h2 className={styles.about}>Desarrollador FullStack</h2>
+      <p>Hola Mundo</p>
     </>
   )
 }
