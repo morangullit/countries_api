@@ -7,11 +7,8 @@ import styles from './NavBar.module.css';
 
 
 export const NavBar = () => {
-
   const dispatch = useDispatch();
-
   const location = useLocation();
-
   const isDetailPage = location.pathname.startsWith('/detail');
 
   const handleSort = (event) => {
@@ -49,7 +46,7 @@ export const NavBar = () => {
                 <option value='Oceania'>Oceania</option>
               </select>
             </div>
-            
+
           </>
         )}
         {isDetailPage && (
