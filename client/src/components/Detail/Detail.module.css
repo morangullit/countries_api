@@ -4,6 +4,12 @@ text-align: center;
 margin-top: 50px;
 }
 
+.card_div{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
 
 .card {

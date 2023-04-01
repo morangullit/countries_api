@@ -14,9 +14,9 @@ const Detail = () => {
   }, [dispatch, id]);
 
   return (
-    
-    <div >
+    <>
       <h1 className={styles.h1_titel}>Country Detail</h1>
+    <div className={styles.card_div}>
       <div className={styles.card}>
       <img className={styles.card_image} src={country.flagImage} alt={`Bandera de ${country.name}`} />
       <div className={styles.card_content}>
@@ -42,6 +42,7 @@ const Detail = () => {
       </div>
       </div>
     </div>
+    </>
   );
 };
 
