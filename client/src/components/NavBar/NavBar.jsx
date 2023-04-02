@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { orderCountries, filterByContinent, getAllActivities, filterByActivity, orderPopulationAsc, orderPopulationDesc } from '../../redux/actions/actions';
+import { 
+  orderCountries, 
+  filterByContinent, 
+  getAllActivities, 
+  filterByActivity, 
+  orderPopulationAsc, 
+  orderPopulationDesc } from '../../redux/actions/actions';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './NavBar.module.css';
 import { useEffect } from 'react';
