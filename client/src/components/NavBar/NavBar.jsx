@@ -1,22 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { orderCountries, filterByContinent, getAllActivities, setSelectedActivity } from '../../redux/actions/actions';
+import { orderCountries, filterByContinent, getAllActivities, filterByActivity, orderPopulationAsc, orderPopulationDesc } from '../../redux/actions/actions';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './NavBar.module.css';
 import { useEffect } from 'react';
+
 
 
 export const NavBar = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const activities = useSelector(state => state.activities);
-  console.log(activities)
   const isDetailPage = location.pathname.startsWith('/detail');
   const isHomePage = location.pathname === '/home';
 
 
   const handleSort = (event) => {
-    dispatch(orderCountries(event.target.value));
+    if (event.target.value === 'PopulationAsc') {
+      dispatch(orderPopulationAsc());
+    } else if (event.target.value === 'PopulationDesc') {
+      dispatch(orderPopulationDesc());
+    } else {
+      dispatch(orderCountries(event.target.value));
+    }
   };
 
   const handleContinentFilter = (event) => {
@@ -29,8 +35,8 @@ export const NavBar = () => {
 
 
   const handleActivitySelection = (event) => {
-    const selectedActivity = event.target.value;
-    dispatch(setSelectedActivity(selectedActivity));
+    dispatch(filterByActivity(event.target.value));
+    
   };
 
   return (
@@ -43,12 +49,14 @@ export const NavBar = () => {
         {!isDetailPage && isHomePage && (
           <>
             <div className={styles.order_container}>
-              <label >Alphabetical order:</label>
+              <label >Order:</label>
               <select className={styles.select} onChange={handleSort}>
                 <option value='Abc'>A-Z</option>
                 <option value='cba'>Z-A</option>
+                <option value='PopulationAsc'>Population (asc)</option>
+                <option value='PopulationDesc'>Population (desc)</option>
               </select>
-            </div>
+              </div>
             <div className={styles.filter_container}>
               <label className={styles.label}>Filter by continent:</label>
               <select className={styles.select} onChange={handleContinentFilter}>
@@ -61,7 +69,7 @@ export const NavBar = () => {
               </select>
             </div>
             <div className={styles.filter_container}>
-              <label className={styles.label}>Select activity:</label>
+              <label className={styles.label}>Selec. Tourist Activity:</label>
               <select className={styles.select} onChange={handleActivitySelection}>
                 <option value=''>--------</option>
                 {activities.map(activity => (

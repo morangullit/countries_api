@@ -6,7 +6,10 @@ import {
   FILTER_BY_CONTINENT,
   CREATE_ACTIVITY,
   GET_ALL_ACTIVITIES,
-  SET_SELECTED_ACTIVITY
+  SET_SELECTED_ACTIVITY,
+  ORDER_POPULATION_ASC,
+  ORDER_POPULATION_DESC,
+
 } from '../actions/types';
 
 const initialState = {
@@ -54,6 +57,31 @@ const countriesReducer = (state = initialState, action) => {
         ...state,
         filteredCountries: sortedCountries,
         order: action.payload,
+      };
+    case ORDER_POPULATION_ASC:
+      let sortedCountriesAsc = [];
+      if (state.continentFilter) {
+        sortedCountriesAsc = [...state.filteredCountries].sort((a, b) => a.population - b.population);
+      } else {
+        sortedCountriesAsc = [...state.countries].sort((a, b) => a.population - b.population);
+      }
+      return {
+        ...state,
+        filteredCountries: sortedCountriesAsc,
+        order: 'PopulationAsc',
+      };
+
+    case ORDER_POPULATION_DESC:
+      let sortedCountriesDesc = [];
+      if (state.continentFilter) {
+        sortedCountriesDesc = [...state.filteredCountries].sort((a, b) => b.population - a.population);
+      } else {
+        sortedCountriesDesc = [...state.countries].sort((a, b) => b.population - a.population);
+      }
+      return {
+        ...state,
+        filteredCountries: sortedCountriesDesc,
+        order: 'PopulationDesc',
       };
     case FILTER_BY_CONTINENT:
       const filteredByContinent = action.payload

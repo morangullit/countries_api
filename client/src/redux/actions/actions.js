@@ -7,7 +7,10 @@ import {
   FILTER_BY_CONTINENT,
   CREATE_ACTIVITY,
   GET_ALL_ACTIVITIES,
-  SET_SELECTED_ACTIVITY
+  SET_SELECTED_ACTIVITY,
+  ORDER_POPULATION_ASC,
+  ORDER_POPULATION_DESC
+
 } from './types';
 
 
@@ -62,6 +65,14 @@ export const orderCountries = (order) => ({
   payload: order
 });
 
+export const orderPopulationAsc = () => ({
+  type: ORDER_POPULATION_ASC,
+});
+
+export const orderPopulationDesc = () => ({
+  type: ORDER_POPULATION_DESC,
+});
+
 export const filterByContinent = (continent) => {
   const payload = continent === "ALL" ? null : continent;
   return {
@@ -93,13 +104,8 @@ export const getAllActivities = () => async (dispatch) => {
   }
 };
 
-export const setSelectedActivity = (activity) => ({
+export const filterByActivity = (activity) => ({
   type: SET_SELECTED_ACTIVITY,
   payload: activity,
 });
-
-
-
-
-
 
