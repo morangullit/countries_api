@@ -23,11 +23,6 @@ const Cards = () => {
           id={country.id}
           name={country.name}
           flagImage={country.flagImage}
-          continent={country.continent}
-          capital={country.capital}
-          subregion={country.subregion}
-          area={country.area}
-          population={country.population}
         />
       ))}
       <Pagination perPage={perPage} totalItems={filteredCountries.length} paginate={paginate} />

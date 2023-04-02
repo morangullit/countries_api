@@ -6,6 +6,8 @@ import {
   ORDER_COUNTRIES,
   FILTER_BY_CONTINENT,
   CREATE_ACTIVITY,
+  GET_ALL_ACTIVITIES,
+  SET_SELECTED_ACTIVITY
 } from './types';
 
 
@@ -77,6 +79,25 @@ export const createActivity = (activityData) => async (dispatch) => {
     console.error(error)
   }
 };
+
+export const getAllActivities = () => async (dispatch) => {
+  try {
+    const response = await fetch('http://localhost:3001/activities');
+    const data = await response.json();
+    dispatch({
+      type: GET_ALL_ACTIVITIES,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setSelectedActivity = (activity) => ({
+  type: SET_SELECTED_ACTIVITY,
+  payload: activity,
+});
+
 
 
 

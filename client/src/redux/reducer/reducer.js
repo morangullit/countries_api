@@ -5,6 +5,8 @@ import {
   ORDER_COUNTRIES,
   FILTER_BY_CONTINENT,
   CREATE_ACTIVITY,
+  GET_ALL_ACTIVITIES,
+  SET_SELECTED_ACTIVITY
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +16,7 @@ const initialState = {
   order: "Abc",
   continentFilter: "",
   activities: [],
+  selectedActivity: [],
 };
 
 const countriesReducer = (state = initialState, action) => {
@@ -57,8 +60,18 @@ const countriesReducer = (state = initialState, action) => {
       return {
         ...state,
         activities: [...state.activities, action.payload],
-        error: null,
       };
+      case GET_ALL_ACTIVITIES:
+  return {
+    ...state,
+    activities: action.payload,
+  };
+  case SET_SELECTED_ACTIVITY:
+  return {
+    ...state,
+    selectedActivity: action.payload,
+  };
+
     default:
       return state;
   }

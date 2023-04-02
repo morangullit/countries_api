@@ -1,14 +1,19 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { orderCountries, filterByContinent } from '../../redux/actions/actions';
+import { orderCountries, filterByContinent, getAllActivities, setSelectedActivity } from '../../redux/actions/actions';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './NavBar.module.css';
+import { useEffect } from 'react';
+
 
 export const NavBar = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const activities = useSelector(state => state.activities);
+  console.log(activities)
   const isDetailPage = location.pathname.startsWith('/detail');
   const isHomePage = location.pathname === '/home';
+
 
   const handleSort = (event) => {
     dispatch(orderCountries(event.target.value));
@@ -16,6 +21,16 @@ export const NavBar = () => {
 
   const handleContinentFilter = (event) => {
     dispatch(filterByContinent(event.target.value));
+  };
+
+  useEffect(() => {
+    dispatch(getAllActivities());
+  }, [dispatch]);
+
+
+  const handleActivitySelection = (event) => {
+    const selectedActivity = event.target.value;
+    dispatch(setSelectedActivity(selectedActivity));
   };
 
   return (
@@ -45,13 +60,27 @@ export const NavBar = () => {
                 <option value='Oceania'>Oceania</option>
               </select>
             </div>
+            <div className={styles.filter_container}>
+              <label className={styles.label}>Select activity:</label>
+              <select className={styles.select} onChange={handleActivitySelection}>
+                <option value=''>--------</option>
+                {activities.map(activity => (
+                  <option key={activity.id} value={activity.name}>{activity.name}</option>
+                ))}
+              </select>
+            </div>
           </>
         )}
         {isDetailPage && (
           <SearchBar show={false} />
         )}
         <Link className={styles.button} to='/create'>Create Activity</Link>
-        <Link className={styles.button} to='/'>Salir</Link>
+        {isDetailPage && (
+          <Link className={styles.button} to='/home'>Atras</Link>
+        )}
+        {!isDetailPage && (
+          <Link className={styles.button} to='/'>Salir</Link>
+        )}
       </div>
     </nav>
   );
