@@ -20,6 +20,7 @@ const initialState = {
   continentFilter: "",
   activities: [],
   selectedActivity: "",
+  activit: [],
 };
 
 const countriesReducer = (state = initialState, action) => {
@@ -104,7 +105,7 @@ const countriesReducer = (state = initialState, action) => {
       };
       case SET_SELECTED_ACTIVITY:
       const selectedActivity  = action.payload
-        ? state.countries.filter((c) => c.activity === action.payload)
+        ? [...(state.activities.find((c) => c.name === action.payload).countries)]
         : state.countries;
       return {
         ...state,
