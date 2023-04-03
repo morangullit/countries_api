@@ -42,7 +42,6 @@ export const NavBar = () => {
 
   const handleActivitySelection = (event) => {
     dispatch(filterByActivity(event.target.value));
-    
   };
 
   return (

@@ -19,7 +19,8 @@ const initialState = {
   order: "Abc",
   continentFilter: "",
   activities: [],
-  selectedActivity: [],
+  selectedActivity: null,
+  filteredCountriesByActivity: [], 
 };
 
 const countriesReducer = (state = initialState, action) => {
@@ -102,11 +103,19 @@ const countriesReducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
       };
-    case SET_SELECTED_ACTIVITY:
-      return {
-        ...state,
-        selectedActivity: action.payload,
-      };
+      case SET_SELECTED_ACTIVITY:
+  const selectedActivity = action.payload;
+  let filteredCountriesByActivity = [];
+  if (selectedActivity) {
+    filteredCountriesByActivity = state.countries.filter(country =>
+      country.activities && country.activities.includes(selectedActivity)
+    );
+  }
+  return {
+    ...state,
+    selectedActivity,
+    filteredCountriesByActivity,
+  };
 
     default:
       return state;
