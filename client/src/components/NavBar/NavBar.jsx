@@ -47,7 +47,7 @@ export const NavBar = () => {
   return (
     <nav >
       <div className={styles.nav_container}>
-      <a className={styles.button} href='/home'>Home</a>
+      <Link className={styles.button} to='/home'>Home</Link>
         {isHomePage && (
           <SearchBar show={true} />
         )}
