@@ -45,20 +45,23 @@ export const getDetail = (id) => async (dispatch) => {
 };
 
 
-export const searchCountry = (searchTerm) => {
-  return async (dispatch) => {
-    try {
-      const response = await fetch(`${BASE_URL}/countries/name/${searchTerm}`);
-      const data = await response.json();
+export const searchCountry = (searchTerm) => async (dispatch) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/countries/name/${searchTerm}`);
+    const data = response.data;
+    if (data.length === 0) {
+      alert(`El Término de búsqueda "${searchTerm}" no se relaciona con ningun país`);
+    } else {
       dispatch({
         type: SEARCH_COUNTRY,
         payload: data,
       });
-    } catch (error) {
-      return console.log(error);
     }
-  };
+  } catch (error) {
+    console.log(error);
+  }
 };
+
 
 export const orderCountries = (order) => ({
   type: ORDER_COUNTRIES,
@@ -84,7 +87,7 @@ export const filterByContinent = (continent) => {
 
 export const createActivity = (activityData) => async (dispatch) => {
   try {
-    const res = await axios.post('http://localhost:3001/activities/', activityData)
+    const res = await axios.post(`${BASE_URL}/activities`, activityData)
     dispatch({ type: CREATE_ACTIVITY, payload: res.data })
   } catch (error) {
     console.error(error)
@@ -93,8 +96,8 @@ export const createActivity = (activityData) => async (dispatch) => {
 
 export const getAllActivities = () => async (dispatch) => {
   try {
-    const response = await fetch('http://localhost:3001/activities');
-    const data = await response.json();
+    const response = await axios.get(`${BASE_URL}/activities`);
+    const data = response.data;
     dispatch({
       type: GET_ALL_ACTIVITIES,
       payload: data,
@@ -103,6 +106,7 @@ export const getAllActivities = () => async (dispatch) => {
     console.log(error);
   }
 };
+
 
 export const filterByActivity = (activity) => ({
   type: SET_SELECTED_ACTIVITY,
