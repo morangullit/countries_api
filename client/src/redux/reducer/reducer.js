@@ -20,7 +20,6 @@ const initialState = {
   continentFilter: "",
   activities: [],
   selectedActivity: "",
-  activit: [],
 };
 
 const countriesReducer = (state = initialState, action) => {

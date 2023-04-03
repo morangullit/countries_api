@@ -45,7 +45,7 @@ const getActivities = async (req, res) => {
     const activities = await Activity.findAll({
       include: {
         model: Country,
-        attributes: ['id', 'name', 'flagImage'] // seleccionar solo los campos id y name de la tabla Country
+        attributes: ['id', 'name', 'flagImage', 'continent'] // seleccionar solo los campos id y name de la tabla Country
       }
     });
 
