@@ -7,7 +7,7 @@ const LandingPage = () => {
         <div className={styles.landing}>
             <h1 className={styles.landing_h1}>Welcome a Countries App</h1>
             <Link to="/home">
-                <button className={styles.button}>Ingresar</button>
+                <button className={styles.button}>Enter</button>
             </Link>
         </div>
 

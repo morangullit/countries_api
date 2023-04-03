@@ -72,11 +72,11 @@ const CreateActivity = ({showNavBar}) => {
       {showNavBar && <NavBar/>}
       <form className={styles.container} onSubmit={handleSubmit}>
         <div>
-          <label className={styles.label} htmlFor="name">Nombre de la:</label>
+          <label className={styles.label} htmlFor="name">Name of the Activity:</label>
           <input className={styles.input} type="text" id="name" name="name" value={activityData.name} onChange={handleInputChange} required />
         </div>
         <div>
-          <label className={styles.label} htmlFor="difficulty">Dificultad:</label>
+          <label className={styles.label} htmlFor="difficulty">Difficulty:</label>
           <input  
             type="number" 
             name="difficulty" 
@@ -88,7 +88,7 @@ const CreateActivity = ({showNavBar}) => {
           />
         </div>
         <div>
-          <label className={styles.label} htmlFor="duration">Duración:</label>
+          <label className={styles.label} htmlFor="duration">Duration:</label>
           <input
               type="number"
               name="duration"
@@ -100,7 +100,7 @@ const CreateActivity = ({showNavBar}) => {
             />
         </div>
         <div>
-          <label className={styles.label} htmlFor="season">Temporada:</label>
+          <label className={styles.label} htmlFor="season">Season:</label>
           <select className={styles.select} id="season" name="season" value={activityData.season} onChange={handleInputChange} required>
             <option value=""></option>
             <option value="Summer">Summer</option>
@@ -111,7 +111,7 @@ const CreateActivity = ({showNavBar}) => {
         </div>
         <div>
           <label className={styles.label} htmlFor="countries">
-            Países:
+            Countries:
           </label>
           <select
             className={styles.select}
@@ -120,7 +120,7 @@ const CreateActivity = ({showNavBar}) => {
             value={selectedCountry}
             onChange={handleCountryChange}
           >
-            <option value="">Seleccionar país</option>
+            <option value="">Select Country</option>
             {countries.map((country) => (
               <option key={country.id} value={country.id}>
                 {country.id} - {country.name}
@@ -128,12 +128,12 @@ const CreateActivity = ({showNavBar}) => {
             ))}
           </select>
           <button className={styles.button} type="button" onClick={handleAddCountry}>
-            Añadir
+          Add
           </button>
         </div>
         <div className={styles.inputGroup}>
           <label className={styles.label} htmlFor="selectedCountries">
-            Países seleccionados:
+              Selected Countries:
           </label>
           <ul className={styles.ul} id="selectedCountries">
             {activityData.countries.map((country) => (
@@ -149,7 +149,7 @@ const CreateActivity = ({showNavBar}) => {
             ))}
           </ul>
         </div>
-        <button className={styles.button} type="submit">Crear actividad</button>
+        <button className={styles.button} type="submit">Create Activity</button>
       </form>
     </div>
   );

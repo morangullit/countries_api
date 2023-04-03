@@ -89,10 +89,10 @@ export const NavBar = () => {
         )}
         <Link className={styles.button} to='/create'>Create Activity</Link>
         {isDetailPage && (
-          <Link className={styles.button} to='/home'>Atras</Link>
+          <Link className={styles.button} to='/home'>Back</Link>
         )}
         {!isDetailPage && (
-          <Link className={styles.button} to='/'>Salir</Link>
+          <Link className={styles.button} to='/'>Exit</Link>
         )}
       </div>
     </nav>
