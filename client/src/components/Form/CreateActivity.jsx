@@ -4,11 +4,10 @@ import { createActivity, getCountries } from '../../redux/actions/actions';
 import { NavBar } from '../NavBar/NavBar';
 import styles from './CreateActivity.module.css';
 
+
+
 const CreateActivity = ({showNavBar}) => {
   const dispatch = useDispatch();
-
-
-
   const [activityData, setActivityData] = useState({
     name: '',
     difficulty: '',
@@ -18,7 +17,6 @@ const CreateActivity = ({showNavBar}) => {
   });
 
   const [selectedCountry, setSelectedCountry] = useState("");
-
   const countries = useSelector(state => state.countries);
 
   useEffect(() => {
@@ -27,6 +25,24 @@ const CreateActivity = ({showNavBar}) => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    let parsedValue = parseInt(value);
+    if (name === 'difficulty' && (parsedValue < 1 || parsedValue > 5)) {
+        alert('La dificultad debe estar entre 1 y 5');
+        return;
+    }
+    if (name === 'duration' && (parsedValue < 1 || parsedValue > 24)) {
+        alert('La duración debe estar entre 1 y 24 horas');
+        return;
+    }
+    setActivityData({ ...activityData, [name]: value });
+};
+
+
+  const handleInputChangeName = (event) => {
+    const { name, value } = event.target;
+    if (/^\s/.test(value)) return alert('El valor no puede empezar con espacios en blanco');
+    if(value.length > 50) return alert('No puede contener mas de 50 Caracteres');
+    if(value.length > 0 && /^[a-zA-Z0-9\s]+$/.test(value) === false) return alert('El valor no puede contener caracteres especiales');
     setActivityData({ ...activityData, [name]: value });
   };
 
@@ -35,14 +51,21 @@ const CreateActivity = ({showNavBar}) => {
   };
 
   const handleAddCountry = () => {
-    if (selectedCountry !== "" && !activityData.countries.includes(selectedCountry)) {
+  if (selectedCountry !== "") {
+    if (!activityData.countries.includes(selectedCountry)) {
       setActivityData({
         ...activityData,
         countries: [...activityData.countries, selectedCountry],
       });
       setSelectedCountry("");
+    } else {
+      alert(`"${selectedCountry}" is already selected!`);
+      setSelectedCountry("");
     }
-  };
+  } else {
+    alert("Please select at least one country!");
+  }
+};
 
   const handleRemoveCountry = (country) => {
     setActivityData({
@@ -51,18 +74,26 @@ const CreateActivity = ({showNavBar}) => {
     });
   }
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    const name = activityData.name;
+    if (/^\d+$/.test(name)) {
+        return alert('El nombre no puede contener solo números');
+    }
+    if(name.length < 3) return alert('El nombre debe tener al menos 3 caracteres')
+
     dispatch(createActivity(activityData));
     setActivityData({
-      name: '',
-      difficulty: '',
-      duration: '',
-      season: '',
-      countries: []
+        name: '',
+        difficulty: '',
+        duration: '',
+        season: '',
+        countries: []
     });
-  };
+};
+
+
+
 
   return (
     <div >
@@ -73,7 +104,7 @@ const CreateActivity = ({showNavBar}) => {
       <form className={styles.container} onSubmit={handleSubmit}>
         <div>
           <label className={styles.label} htmlFor="name">Name of the Activity:</label>
-          <input className={styles.input} type="text" id="name" name="name" value={activityData.name} onChange={handleInputChange} required />
+          <input className={styles.input} type="text" id="name" name="name" value={activityData.name} onChange={handleInputChangeName} required />
         </div>
         <div>
           <label className={styles.label} htmlFor="difficulty">Difficulty:</label>
