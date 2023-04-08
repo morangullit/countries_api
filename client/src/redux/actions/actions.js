@@ -3,6 +3,7 @@ import {
   GET_ALL_COUNTRIES,
   GET_DETAIL,
   SEARCH_COUNTRY,
+  RESET_FILTERED_COUNTRIES,
   ORDER_COUNTRIES,
   FILTER_BY_CONTINENT,
   CREATE_ACTIVITY,
@@ -62,6 +63,11 @@ export const searchCountry = (searchTerm) => async (dispatch) => {
   }
 };
 
+export const resetFilteredCountries = () => {
+  return {
+    type: RESET_FILTERED_COUNTRIES,
+  };
+};
 
 export const orderCountries = (order) => ({
   type: ORDER_COUNTRIES,

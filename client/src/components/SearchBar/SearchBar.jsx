@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchCountry } from '../../redux/actions/actions';
+import { resetFilteredCountries, searchCountry } from '../../redux/actions/actions';
 import styles from './SearchBar.module.css';
 
 const SearchBar = ({ show }) => {
@@ -18,30 +18,29 @@ const SearchBar = ({ show }) => {
   const validSpaces = !/^\s/.test(input); // No espacios en blanco al inicio
 
   if (!validLength) {
-    alert('No se permite más de 50 caracteres');
+    alert('No more than 50 characters allowed');
     return;
   }
   if (!validNumbers) {
-    alert('No se permiten números');
+    alert('Numbers are not allowed');
     return;
   }
   if (!validCharacters) {
-    alert('No se permiten caracteres especiales');
+    alert('Special characters are not allowed');
     return;
   }
   if (!validSpecialCharacters) {
-    alert('No se permiten caracteres especiales');
+    alert('Special characters are not allowed');
     return;
   }
   if (!validSpaces) {
-    alert('No se permiten espacios en blanco al inicio');
+    alert('Blank spaces are not allowed at the beginning.');
     return;
   }
 
   setSearchTerm(input);
   if (input.length === 0) {
-    // Validar si el valor del input es cero
-    // No hacer el dispatch
+    dispatch(resetFilteredCountries());
     return;
   }
   dispatch(searchCountry(input));

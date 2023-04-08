@@ -2,6 +2,7 @@ import {
   GET_ALL_COUNTRIES,
   GET_DETAIL,
   SEARCH_COUNTRY,
+  RESET_FILTERED_COUNTRIES,
   ORDER_COUNTRIES,
   FILTER_BY_CONTINENT,
   CREATE_ACTIVITY,
@@ -39,6 +40,11 @@ const countriesReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredCountries: action.payload,
+      };
+    case RESET_FILTERED_COUNTRIES:
+      return {
+        ...state,
+        filteredCountries: state.countries,
       };
     case ORDER_COUNTRIES:
       let sortedCountries = [];
@@ -102,8 +108,8 @@ const countriesReducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
       };
-      case SET_SELECTED_ACTIVITY:
-      const selectedActivity  = action.payload
+    case SET_SELECTED_ACTIVITY:
+      const selectedActivity = action.payload
         ? [...(state.activities.find((c) => c.name === action.payload).countries)]
         : state.countries;
       return {
