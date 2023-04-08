@@ -27,11 +27,11 @@ const CreateActivity = ({showNavBar}) => {
     const { name, value } = event.target;
     let parsedValue = parseInt(value);
     if (name === 'difficulty' && (parsedValue < 1 || parsedValue > 5)) {
-        alert('La dificultad debe estar entre 1 y 5');
+        alert('Difficulty must be between 1 and 5');
         return;
     }
     if (name === 'duration' && (parsedValue < 1 || parsedValue > 24)) {
-        alert('La duración debe estar entre 1 y 24 horas');
+        alert('Duration must be between 1 and 24 hours');
         return;
     }
     setActivityData({ ...activityData, [name]: value });
@@ -40,9 +40,9 @@ const CreateActivity = ({showNavBar}) => {
 
   const handleInputChangeName = (event) => {
     const { name, value } = event.target;
-    if (/^\s/.test(value)) return alert('El valor no puede empezar con espacios en blanco');
-    if(value.length > 50) return alert('No puede contener mas de 50 Caracteres');
-    if(value.length > 0 && /^[a-zA-Z0-9\s]+$/.test(value) === false) return alert('El valor no puede contener caracteres especiales');
+    if (/^\s/.test(value)) return alert('Value cannot start with white space');
+    if(value.length > 50) return alert('Cannot contain more than 50 characters');
+    if(value.length > 0 && /^[a-zA-Z0-9\s]+$/.test(value) === false) return alert('Cannot contain special characters');
     setActivityData({ ...activityData, [name]: value });
   };
 
@@ -76,11 +76,15 @@ const CreateActivity = ({showNavBar}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const name = activityData.name;
-    if (/^\d+$/.test(name)) {
-        return alert('El nombre no puede contener solo números');
+    if (activityData.countries.length === 0) {
+      alert('Please select at least one country!');
+      return;
     }
-    if(name.length < 3) return alert('El nombre debe tener al menos 3 caracteres')
+    if (activityData.name.length < 3) {
+      alert('The name must be greater than or equal to 3 characters');
+      return;
+    }
+    
 
     dispatch(createActivity(activityData));
     setActivityData({
