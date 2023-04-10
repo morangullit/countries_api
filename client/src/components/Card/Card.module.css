@@ -1,22 +1,21 @@
-
 .card {
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    width: 300px;
-    height: auto; /* Ajustar la altura al contenido */
-    margin-right: 20px;
-    margin-bottom: 20px;
-    display: inline-block;
-    background-color: rgba(177, 177, 177, 0.808);
-  }
-  
-  .card:hover {
-    box-shadow: 2px 2px 5px #aaa;
-  }
-  
- .card_image {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  width: 300px;
+  height: auto; 
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+  background-color: rgba(177, 177, 177, 0.808);
+}
+
+.card:hover {
+  box-shadow: 2px 2px 5px #aaa;
+}
+
+.card_image {
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -24,43 +23,41 @@
   border-top-right-radius: 15px;
 }
 
+.card_content {
+  height: auto;
+  margin-top: 20px;
+  font-size: 0.9em; 
+  overflow: hidden; 
+}
+
+.card_title {
+  font-size: 1.2em;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 3em; 
+}
+
+.card_text {
+  font-size: 1em;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    height: auto;
+  }
+
+  .card_image {
+    max-height: 50%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   .card_content {
     height: auto;
-    margin-top: 20px;
-    font-size: 0.9em; /* Reducir el tamaño de la fuente del texto */
-    overflow: hidden; /* oculta cualquier contenido que supere la altura fija */
+    font-size: 0.8em; /* Reducir el tamaño de la fuente del texto */
   }
-  
-  .card_title {
-    font-size: 1.2em;
-    font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-height: 2em;
-  }
-  
-  
-  .card_text {
-    font-size: 1em;
-  }
-  
-  @media (max-width: 600px) {
-    .card {
-      width: 100%;
-      height: auto;
-    }
-  
-    .card_image {
-      max-height: 50%;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-  
-    .card_content {
-      height: auto;
-      font-size: 0.8em; /* Reducir el tamaño de la fuente del texto */
-    }
-  }
-  
+}

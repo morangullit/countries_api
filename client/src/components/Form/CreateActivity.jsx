@@ -6,8 +6,11 @@ import styles from './CreateActivity.module.css';
 
 
 
-const CreateActivity = ({showNavBar}) => {
+const CreateActivity = ({ showNavBar }) => {
   const dispatch = useDispatch();
+  const countries = useSelector(state => state.countries);
+  //const activities = useSelector(state => state.activities);
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [activityData, setActivityData] = useState({
     name: '',
     difficulty: '',
@@ -16,8 +19,6 @@ const CreateActivity = ({showNavBar}) => {
     countries: []
   });
 
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const countries = useSelector(state => state.countries);
 
   useEffect(() => {
     dispatch(getCountries());
@@ -27,22 +28,22 @@ const CreateActivity = ({showNavBar}) => {
     const { name, value } = event.target;
     let parsedValue = parseInt(value);
     if (name === 'difficulty' && (parsedValue < 1 || parsedValue > 5)) {
-        alert('Difficulty must be between 1 and 5');
-        return;
+      alert('Difficulty must be between 1 and 5');
+      return;
     }
     if (name === 'duration' && (parsedValue < 1 || parsedValue > 24)) {
-        alert('Duration must be between 1 and 24 hours');
-        return;
+      alert('Duration must be between 1 and 24 hours');
+      return;
     }
     setActivityData({ ...activityData, [name]: value });
-};
+  };
 
 
   const handleInputChangeName = (event) => {
     const { name, value } = event.target;
     if (/^\s/.test(value)) return alert('Value cannot start with white space');
-    if(value.length > 50) return alert('Cannot contain more than 50 characters');
-    if(value.length > 0 && /^[a-zA-Z0-9\s]+$/.test(value) === false) return alert('Cannot contain special characters');
+    if (value.length > 50) return alert('Cannot contain more than 50 characters');
+    if (value.length > 0 && /^[a-zA-Z0-9\s]+$/.test(value) === false) return alert('Cannot contain special characters');
     setActivityData({ ...activityData, [name]: value });
   };
 
@@ -51,21 +52,21 @@ const CreateActivity = ({showNavBar}) => {
   };
 
   const handleAddCountry = () => {
-  if (selectedCountry !== "") {
-    if (!activityData.countries.includes(selectedCountry)) {
-      setActivityData({
-        ...activityData,
-        countries: [...activityData.countries, selectedCountry],
-      });
-      setSelectedCountry("");
+    if (selectedCountry !== "") {
+      if (!activityData.countries.includes(selectedCountry)) {
+        setActivityData({
+          ...activityData,
+          countries: [...activityData.countries, selectedCountry],
+        });
+        setSelectedCountry("");
+      } else {
+        alert(`"${selectedCountry}" is already selected!`);
+        setSelectedCountry("");
+      }
     } else {
-      alert(`"${selectedCountry}" is already selected!`);
-      setSelectedCountry("");
+      alert("Please select at least one country!");
     }
-  } else {
-    alert("Please select at least one country!");
-  }
-};
+  };
 
   const handleRemoveCountry = (country) => {
     setActivityData({
@@ -76,6 +77,12 @@ const CreateActivity = ({showNavBar}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+   /*  const existingActivity = activities.find(a => a.name === activityData.name);
+    if (existingActivity) {
+      alert(`An activity with the name "${activityData.name}" already exists. Please choose a different name.`);
+      return;
+    } */
+
     if (activityData.countries.length === 0) {
       alert('Please select at least one country!');
       return;
@@ -84,17 +91,17 @@ const CreateActivity = ({showNavBar}) => {
       alert('The name must be greater than or equal to 3 characters');
       return;
     }
-    
+
 
     dispatch(createActivity(activityData));
     setActivityData({
-        name: '',
-        difficulty: '',
-        duration: '',
-        season: '',
-        countries: []
+      name: '',
+      difficulty: '',
+      duration: '',
+      season: '',
+      countries: []
     });
-};
+  };
 
 
 
@@ -102,9 +109,9 @@ const CreateActivity = ({showNavBar}) => {
   return (
     <div >
       <div>
-      <h1 className={styles.h1_titel}>Activity Creation</h1>
+        <h1 className={styles.h1_titel}>Activity Creation</h1>
       </div>
-      {showNavBar && <NavBar/>}
+      {showNavBar && <NavBar />}
       <form className={styles.container} onSubmit={handleSubmit}>
         <div>
           <label className={styles.label} htmlFor="name">Name of the Activity:</label>
@@ -112,27 +119,27 @@ const CreateActivity = ({showNavBar}) => {
         </div>
         <div>
           <label className={styles.label} htmlFor="difficulty">Difficulty:</label>
-          <input  
-            type="number" 
-            name="difficulty" 
-            value={activityData.difficulty} 
+          <input
+            type="number"
+            name="difficulty"
+            value={activityData.difficulty}
             onChange={handleInputChange}
             min="1"
             max="5"
-            required 
+            required
           />
         </div>
         <div>
           <label className={styles.label} htmlFor="duration">Duration:</label>
           <input
-              type="number"
-              name="duration"
-              value={activityData.duration}
-              onChange={handleInputChange}
-              min="1"
-              max="24"
-              required
-            />
+            type="number"
+            name="duration"
+            value={activityData.duration}
+            onChange={handleInputChange}
+            min="1"
+            max="24"
+            required
+          />
         </div>
         <div>
           <label className={styles.label} htmlFor="season">Season:</label>
@@ -163,12 +170,12 @@ const CreateActivity = ({showNavBar}) => {
             ))}
           </select>
           <button className={styles.button} type="button" onClick={handleAddCountry}>
-          Add
+            Add
           </button>
         </div>
         <div className={styles.inputGroup}>
           <label className={styles.label} htmlFor="selectedCountries">
-              Selected Countries:
+            Selected Countries:
           </label>
           <ul className={styles.ul} id="selectedCountries">
             {activityData.countries.map((country) => (
