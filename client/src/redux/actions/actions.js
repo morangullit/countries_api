@@ -51,7 +51,7 @@ export const searchCountry = (searchTerm) => async (dispatch) => {
     const response = await axios.get(`${BASE_URL}/countries/name/${searchTerm}`);
     const data = response.data;
     if (data.length === 0) {
-      alert(`El Término de búsqueda "${searchTerm}" no se relaciona con ningun país`);
+      alert(`The Search Term "${searchTerm}" does not relate to any country`);
     } else {
       dispatch({
         type: SEARCH_COUNTRY,
