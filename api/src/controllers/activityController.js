@@ -6,7 +6,7 @@ const createActivity = async (req, res) => {
   try {
     // Verificar que se recibieron todos los datos necesarios
     if (!name || !difficulty || !duration || !season || !countries) {
-      return res.status(400).json({ message: 'Faltan datos obligatorios' });
+      return res.status(400).json({ message: 'Mandatory data missing' });
     }
 
     // Crear la actividad turística en la base de datos
@@ -36,7 +36,7 @@ const createActivity = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al crear la actividad', error: error });
+    res.status(500).json({ message: 'Error creating activity', error: error });
   }
 };
 
@@ -52,7 +52,7 @@ const getActivities = async (req, res) => {
     res.json(activities);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al obtener actividades turísticas' });
+    res.status(500).json({ message: 'Error when obtaining tourist activities' });
   }
 };
 
