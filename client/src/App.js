@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, useLocation } from 'react-router-dom';
-import { About } from './components/';
 import Detail from './components/Detail/Detail';
 import CreateActivity from './components/Form/CreateActivity';
 import HomePage from './components/HomePage/HomePage';
@@ -19,7 +18,6 @@ function App() {
       <Route path="/create">
         <CreateActivity showNavbar={false} />
       </Route>
-      <Route path="/about" component={About} />
       <Route path="/home" render={() => <HomePage />} />
     </div>
   );

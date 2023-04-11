@@ -29,18 +29,20 @@ const Cards = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className={styles.card_container}>
+    <>
       <Pagination perPage={perPage} totalItems={totalItems} paginate={paginate} />
-      {currentItems.map((country) => (
-        <Card
-          key={country.id}
-          id={country.id}
-          name={country.name}
-          flagImage={country.flagImage}
-          continent={country.continent}
-        />
-      ))}
-    </div>
+      <div className={styles.card_container}>
+        {currentItems.map((country) => (
+          <Card
+            key={country.id}
+            id={country.id}
+            name={country.name}
+            flagImage={country.flagImage}
+            continent={country.continent}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
