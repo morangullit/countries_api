@@ -39,9 +39,11 @@ margin-top: 50px;
 
   .card_content {
     height: auto;
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 0.9em; /* Reducir el tamaño de la fuente del texto */
     overflow: hidden; /* oculta cualquier contenido que supere la altura fija */
+    display: flex; /* Agregado */
+    flex-direction: column; /* Agregado */
   }
   
   .card_title {
