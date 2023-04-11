@@ -21,8 +21,12 @@ const LandingPage = () => {
                         <p >Developer Gullit Moran</p>
                     </div>
                     <div className={`${styles.column} ${styles.right}`}>
+                        <a href="https://github.com/morangullit/countries_api">
                         <img className={styles.logos_img} src={GitHub} alt="Logo de GitHub" />
+                        </a>
+                        <a href="https://linkedin.com/in/gullit-enrique-moran-escobar-731272a5">
                         <img className={styles.logos_img} src={Linkedin} alt="Logo de Linkedin" />
+                        </a>
                     </div>
                 </footer>
         </div>

@@ -9,7 +9,7 @@ import styles from './CreateActivity.module.css';
 const CreateActivity = ({ showNavBar }) => {
   const dispatch = useDispatch();
   const countries = useSelector(state => state.countries);
-  //const activities = useSelector(state => state.activities);
+  const activities = useSelector(state => state.activities);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [activityData, setActivityData] = useState({
     name: '',
@@ -77,11 +77,11 @@ const CreateActivity = ({ showNavBar }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   /*  const existingActivity = activities.find(a => a.name === activityData.name);
+    const existingActivity = activities.find(a => a.name === activityData.name);
     if (existingActivity) {
       alert(`An activity with the name "${activityData.name}" already exists. Please choose a different name.`);
       return;
-    } */
+    }
 
     if (activityData.countries.length === 0) {
       alert('Please select at least one country!');
