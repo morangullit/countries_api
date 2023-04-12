@@ -22,15 +22,15 @@ const Cards = () => {
     }
   }, [filteredCountries]);
 
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const indexOfLastItem = currentPage * perPage;
   const indexOfFirstItem = indexOfLastItem - perPage;
   const currentItems = Object.values(filteredCountries).slice(indexOfFirstItem, indexOfLastItem);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <>
-      <Pagination perPage={perPage} totalItems={totalItems} paginate={paginate} />
+      <Pagination perPage={perPage} totalItems={totalItems} currentPage={currentPage} paginate={paginate} />
       <div className={styles.card_container}>
         {currentItems.map((country) => (
           <Card

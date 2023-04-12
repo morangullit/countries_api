@@ -9,11 +9,23 @@ const Pagination = ({ perPage, totalItems, currentPage, paginate }) => {
   }
 
   const handleClick = (pageNumber) => {
-    paginate(pageNumber);
+    if (pageNumber === 'prev') {
+      paginate(currentPage - 1);
+    } else if (pageNumber === 'next') {
+      paginate(currentPage + 1);
+    } else {
+      paginate(pageNumber);
+    }
   };
 
   return (
     <div className={styles.pagination}>
+      <button
+        disabled={currentPage === 1}
+        onClick={() => handleClick('prev')}
+      >
+        prev
+      </button>
       {pageNumbers.map((number) => (
         <button
           key={number}
@@ -23,6 +35,12 @@ const Pagination = ({ perPage, totalItems, currentPage, paginate }) => {
           {number}
         </button>
       ))}
+      <button
+        disabled={currentPage === pageNumbers.length}
+        onClick={() => handleClick('next')}
+      >
+        next
+      </button>
     </div>
   );
 };

@@ -19,7 +19,6 @@ const CreateActivity = ({ showNavBar }) => {
     countries: []
   });
 
-
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);

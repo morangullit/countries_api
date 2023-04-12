@@ -18,7 +18,7 @@ margin-top: 50px;
     padding: 15px;
     text-align: center;
     width: 300px;
-    height: auto; /* Ajustar la altura al contenido */
+    height: auto; 
     margin-right: 20px;
     margin-bottom: 20px;
     display: inline-block;
@@ -40,10 +40,10 @@ margin-top: 50px;
   .card_content {
     height: auto;
     margin-top: 20px;
-    font-size: 0.9em; /* Reducir el tamaño de la fuente del texto */
-    overflow: hidden; /* oculta cualquier contenido que supere la altura fija */
-    display: flex; /* Agregado */
-    flex-direction: column; /* Agregado */
+    font-size: 0.9em; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column; 
   }
   
   .card_title {
