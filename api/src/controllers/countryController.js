@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { Country } = require('../db');
 const { Op } = require("sequelize");
-const data = require('../../data.json')
+//const data = require('../../data.json')
 
 const mapCountry = (country) => ({
   id: country.cca3,
