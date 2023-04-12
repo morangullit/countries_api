@@ -22,22 +22,22 @@ const Detail = () => {
           <div className={styles.card_content}>
             <h2 className={styles.detail_title}>{country.name}</h2>
             <p className={styles.detail_text}>
-              <strong>ID:</strong> {country.id}
+              <strong>ID:</strong> <span className={styles.detail_info}></span> {country.id}
             </p>
             <p className={styles.detail_text}>
-              <strong>Capital:</strong> {country.capital}
+              <strong>Capital:</strong> <span className={styles.detail_info}></span>{country.capital}
             </p>
             <p className={styles.detail_text}>
-              <strong>Continente:</strong> {country.continent}
+              <strong>Continente:</strong> <span className={styles.detail_info}></span>{country.continent}
             </p>
             <p className={styles.detail_text}>
-              <strong>Sub-Region:</strong> {country.subregion}
+              <strong>Sub-Region:</strong> <span className={styles.detail_info}></span>{country.subregion}
             </p>
             <p className={styles.detail_text}>
-              <strong>Area:</strong> {country.area?.toLocaleString()} km²
+              <strong>Area:</strong> <span className={styles.detail_info}></span>{country.area?.toLocaleString()} km²
             </p>
             <p className={styles.detail_text}>
-              <strong>Población:</strong> {country.population?.toLocaleString()}
+              <strong>Población:</strong> <span className={styles.detail_info}></span>{country.population?.toLocaleString()}
             </p>
           </div>
         </div>
