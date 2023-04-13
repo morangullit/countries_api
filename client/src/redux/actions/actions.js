@@ -16,7 +16,7 @@ import {
 
 
 
-const BASE_URL = "https://countriesapi-production-988d.up.railway.app";
+const BASE_URL = "http://localhost:3001";
 
 export function getCountries() {
   return async function (dispatch) {
