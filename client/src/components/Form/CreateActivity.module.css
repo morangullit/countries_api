@@ -123,6 +123,11 @@ ul {
   margin-top: 50px;
   }
 
+  .invalid {
+    border: 1px solid red;
+  }
+  
+
 
 
   
