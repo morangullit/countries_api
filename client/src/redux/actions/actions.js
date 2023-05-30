@@ -16,7 +16,7 @@ import {
 
 
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://https://back-calendar-ne6gcb85a-morangullit.vercel.app:3001";
 
 export function getCountries() {
   return async function (dispatch) {
